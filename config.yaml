@@ -1,0 +1,53 @@
+name: "IP Camera Alarm Server"
+description: "Universal Alarm Server for all your IP cameras in one place!"
+version: "1.2.4"
+slug: "ip_camera_alarm_server"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+url: "https://github.com/miroslav-pavlov/hassio-alarmserver"
+panel_icon: "./icon.png"
+boot: "auto"
+ports:
+  15002/tcp: 15002
+host_network: true
+options:
+  hikvision:
+    enabled: false
+  hisilicon:
+    enabled: false
+  dahua:
+    enabled: false
+  ftp:
+    enabled: false
+  mqtt:
+    enabled: false
+  webhooks:
+    enabled: false
+
+schema:
+  hikvision:
+    enabled: bool?
+  hisilicon:
+    enabled: bool?
+    port: int?
+  dahua:
+    enabled: bool?
+  ftp:
+    enabled: bool?
+    port: int?
+    password: str?
+    allowFiles: bool?
+    rootPath: str?
+  mqtt:
+    enabled: bool?
+    username: str?
+    password: str?
+    port: int?
+    server: str?
+    topicroot: str?
+  webhooks:
+    enabled: bool?

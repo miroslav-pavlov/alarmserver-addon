@@ -64,11 +64,9 @@ type FtpConfig struct {
 }
 
 func (c *Config) SetDefaults() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath(".")
-	viper.AddConfigPath("./config/")
-	viper.AddConfigPath("/config/")
+	viper.SetConfigName("options")
+	viper.SetConfigType("json")
+	viper.AddConfigPath("./data/")
 
 	viper.SetDefault("debug", false)
 	viper.SetDefault("mqtt.port", 1883)

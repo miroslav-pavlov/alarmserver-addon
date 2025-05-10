@@ -4,7 +4,8 @@
 
 Universal Alarm Server for all your IP cameras in one place!
 
-Integrates well with Home Assistant, Node-Red, etc. Runs great on Raspberry-Pi!
+> **Warning**
+This fork uses HA's addon's configuration pannel instead of the original config.yaml. This comes with some limitations as HA supports a maximum of 2 nestings for the options and schema to my understanding and the original project uses more than two as seen in [sample config](docs/config.yaml). When testing the addon if an input from the config was an ip or port and its type was not specified in schema it would round it to 0. This is not a problem for hisilicon, ftp and mqtt but the other functions requite larger configs and may cause problems. I'm using hisilicon cameras and have not tested this fully but be aware that if you are using Hikvision or Dahua this project may not work for you without minor tinkering to the config.yaml file.
 
 Supported Cameras 📸:
   - Hikvision (Annke/Alarm.com/etc.)
@@ -18,11 +19,11 @@ Supported Delivery 📬:
 
 ## Configuration
 
-Create file `config.yaml` in the folder where the application binary lives.
+On the addon's configuration page edit the yaml code based on you camera type.
 
 Also see [sample config](docs/config.yaml).
 
-When alarm server is coming online, it will also send a status message to `/camera-alerts` topic with its status.
+When alarm server is coming online, it will also send a status message to `camera-alerts/alarmserver` topic with its status.
 
 #### HiSilicon
 
@@ -108,24 +109,6 @@ _A_: Some IP cameras have ONVIF, and sometimes that even includes motion alarms,
 - HomeViz OB10, K4W10, OW10 (Hisilicon server, tested by [acburnett](https://github.com/acburnett))
 
 If your camera works with Alarm Server - create an issue with some details about it and a picture, and we'll post it here. 
-
-## Docker
-
-There is a pre-built image `toxuin/alarmserver`. It is a multi-architecture image and will work both on Intel/AMD machines, and your Raspberry PI too.
-
-Usage: `docker run -d -v $PWD/config.yml:/config.yml -v $PWD/ftp:/ftp -p 21:21 -p 15002:15002 toxuin/alarmserver`
-
-Explanation:
-
-  - `-d` makes it run in the background, so you don't have to stare at its logs for it to keep running
-
-  - `-v $PWD/config.yml:/config.yml` passes through your config from your machine into the container. Make sure the file exists.
-
-  - `-v $PWD/ftp:/ftp` passes through a folder `ftp` from where you're running this command into the container. Not needed if you don't need FTP.
-
-  - `-p 21:21` allows your machine to pass through port 21 that is used for FTP server. Not needed if you're not using FTP server.
-
-  - `-p 15002:15002` same as above, but for port 15002 that's used by HiSilicon alarms server. Not needed if you don't need HiSilicon server.
 
 ## Feedback
 
