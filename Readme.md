@@ -5,7 +5,7 @@
 Universal Alarm Server for all your IP cameras in one place!
 
 > [!CAUTION]
-> This fork uses HA's addon's configuration pannel instead of the original config.yaml. This comes with some limitations as HA supports a maximum of 2 nestings for the options and schema to my understanding and the original project uses more than two as seen in [sample config](docs/config.yaml). When testing the addon if an input from the config was an ip or port and its type was not specified in schema it would round it to 0. This is not a problem for hisilicon, ftp and mqtt but the other functions requite larger configs and may cause problems. I'm using hisilicon cameras and have not tested this fully but be aware that if you are using Hikvision or Dahua this project may not work for you without minor tinkering to the config.yaml file.
+> This fork uses HA's addon's configuration pannel instead of the original config.yaml. This comes with some limitations as HA supports a maximum of 2 nestings for the options and schema (to the dev's understanding) and the original project uses more than two as seen in [sample config](docs/config.yaml). When testing the addon if an input from the config is an ip or port and its type is not specified in schema it would round it to 0. This is not a problem for hisilicon, ftp and mqtt but the other functions that require larger configs may cause problems. This fork has been tested only with hisilicon cameras so be aware that if you are using Hikvision or Dahua this project may not work without minor tinkering to the config.yaml file.
 
 Supported Cameras 📸:
   - Hikvision (Annke/Alarm.com/etc.)
